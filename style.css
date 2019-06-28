@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.noteBox1 {
+    background-color: white;
+    color: black;
+}
+.noteBox2 {
+    background-color: yellow;
+    color: black;
+}
+.noteBox3 {
+    background-color: green;
+    color: red;
+}

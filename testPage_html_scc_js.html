@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+    <html>
+        
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>Test page</title>
+            <script src="less.min.js" ></script>
+            <script src="http://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+            <link href="style.css" rel="stylesheet">
+            <script type="text/javascript">
+
+                var paramNote = {};
+                
+                //Функция забирает п данные и задает параметры для записки.
+                function thinkDataParemNote(){
+                    var chekStyleNote = document.getElementsByName('chekStyleNote');
+                    var NoteLabel = document.getElementsByName('NoteLabel')[0];
+                    var NoteText = document.getElementsByName('NoteText')[0];
+                 
+                    //Задаем параметры и вносим данные для "записки".
+                  
+                    paramNote.id = "note";
+                    for (key in chekStyleNote){
+                        if(chekStyleNote[key].checked){
+                                paramNote.class = chekStyleNote[key].value;
+                        }
+                    }
+                    paramNote.text = "<h6>" + NoteLabel.value + "<h6/><p>" + NoteText.value + "</p>";
+                }
+
+                //функция создает и добавляет блок с данными "записку", в указанный блок на странице.
+                function addNote(param, block){
+                    thinkDataParemNote();
+                    var btn = document.createElement('div');
+                        btn.id = param.id;
+                        btn.setAttribute("class", param.class);
+                        btn.innerHTML = param.text;
+                        block.appendChild(btn);
+                }
+
+                
+               
+
+
+            </script>
+        </head>
+
+        <body>
+            <div id="pageBox" class="PageBlock">
+                <div id="headerBox" class="PageBlock">
+                    <h3 id="headerBoxHeader"></h3>
+                </div>
+                <div id="contentBox" class="PageBlock">
+                        <p>Выбирете стиль и введите текст</p>
+                
+                        <input name="chekStyleNote" type="radio" checked value="noteBox1" >Белый фон, черный текст</br>
+                        <input name="chekStyleNote" type="radio" value="noteBox2">Желтый фон, черный текст</br>
+                        <input name="chekStyleNote" type="radio" value="noteBox3">Зелены фон, красный текст</br>
+                
+                        </br><input name="NoteLabel" type="text" value="Заголовок">
+                        </br><textarea name="NoteText" type="text" placeholder="Текст"></textarea>
+                        </br></br><button onclick="addNote(paramNote, noteBox)" value="btnAddNote">Создать</button>
+
+                    <div id="note_box" class="ContentBoxNavBar">
+                     
+                    </div>
+                </div>
+                <div id="footherBox" class="PageBlock">
+                    
+                </div>
+            </div>
+        </body>
+
+        <script type="text/javascript">
+
+         
+            var noteBox = document.getElementById('note_box');
+
+            $('#headerBoxHeader').text("Создать записку");
+
+           // var ContentBox = document.getElementById('contentBox');
+            //    ContentBox.innerHTML = "Контент"
+        
+            $('#footherBox').text('');
+        </script>
+</html>
+
